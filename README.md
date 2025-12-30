@@ -66,6 +66,7 @@ Single pipes are implemented using `pipe()` and `dup2()`:
 
 ## 🗂️ Project Structure
 
+```
 mini-linux-shell/
 ├── src/
 │   ├── main.c        # Shell loop and orchestration
@@ -83,6 +84,8 @@ mini-linux-shell/
 ├── Makefile
 ├── README.md
 └── .gitignore
+
+```
 
 
 

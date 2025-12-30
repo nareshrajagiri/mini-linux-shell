@@ -115,7 +115,7 @@ mini-shell> exit
 
 ---
 
-##🎯 Learning Outcomes
+## 🎯 Learning Outcomes
 
 Through this project, I gained hands-on experience with:
 

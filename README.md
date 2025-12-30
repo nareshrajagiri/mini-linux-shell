@@ -68,21 +68,22 @@ Single pipes are implemented using `pipe()` and `dup2()`:
 
 mini-linux-shell/
 ├── src/
-│ ├── main.c            # Shell loop and orchestration
-│ ├── parser.c          # Input parsing logic
-│ ├── builtins.c        # Built-in command handling
-│ ├── executor.c        # Process creation and execution
-│ ├── signals.c         # Signal handling logic
-│ └── pipe.c            # Pipe execution logic
+│   ├── main.c        # Shell loop and orchestration
+│   ├── parser.c      # Input parsing logic
+│   ├── builtins.c    # Built-in command handling
+│   ├── executor.c    # Process creation and execution
+│   ├── signals.c     # Signal handling logic
+│   └── pipe.c        # Pipe execution logic
 ├── include/
-│ ├── parser.h
-│ ├── builtins.h
-│ ├── executor.h
-│ ├── signals.h
-│ └── pipe.h
+│   ├── parser.h
+│   ├── builtins.h
+│   ├── executor.h
+│   ├── signals.h
+│   └── pipe.h
 ├── Makefile
 ├── README.md
 └── .gitignore
+
 
 
 ---

@@ -4,6 +4,8 @@
 #include <string.h>
 #include <sys/wait.h>
 #include<signal.h>
+#include<fcntl.h>
+
 
 #define MAX_LINE 1024
 #define MAX_ARGS 64
@@ -40,6 +42,19 @@ int main() {
             continue;
 
         parse_input(input, args);
+        int pipe_index = -1;
+
+        for (int i = 0; args[i] != NULL; i++) 
+        {
+        
+            if (strcmp(args[i], "|") == 0) 
+            {
+             pipe_index = i;
+             args[i] = NULL;   // split command
+             break;
+            }
+        }
+
 
         int background = 0;
 
@@ -68,6 +83,49 @@ int main() {
 
 
         /* -------------------------------------------------- */
+
+        /* ---------- PIPE HANDLING ---------- */
+if (pipe_index != -1) {
+    int pipefd[2];
+
+    if (pipe(pipefd) == -1) {
+        perror("pipe failed");
+        continue;
+    }
+
+    pid_t p1 = fork();
+    if (p1 == 0) {
+        // First command: cmd1 | ...
+        signal(SIGINT, SIG_DFL);
+        dup2(pipefd[1], STDOUT_FILENO);  // stdout → pipe write
+        close(pipefd[0]);
+        close(pipefd[1]);
+        execvp(args[0], args);
+        perror("exec failed");
+        exit(1);
+    }
+
+    pid_t p2 = fork();
+    if (p2 == 0) {
+        // Second command: ... | cmd2
+        signal(SIGINT, SIG_DFL);
+        dup2(pipefd[0], STDIN_FILENO);   // stdin ← pipe read
+        close(pipefd[1]);
+        close(pipefd[0]);
+        execvp(args[pipe_index + 1], &args[pipe_index + 1]);
+        perror("exec failed");
+        exit(1);
+    }
+
+    // Parent
+    close(pipefd[0]);
+    close(pipefd[1]);
+    waitpid(p1, NULL, 0);
+    waitpid(p2, NULL, 0);
+    continue;   // 🚨 skip normal fork
+}
+/* ---------------------------------- */
+
 
         pid_t pid = fork();
        if (pid == 0) {

@@ -4,8 +4,7 @@ A minimal, modular Linux shell implemented in C to demonstrate core
 operating system concepts such as process creation, signal handling,
 inter-process communication, and job control.
 
-This project is **not** intended to be a full Bash replacement.
-It is intentionally scoped to focus on correctness, clarity, and OS fundamentals.
+
 
 ---
 

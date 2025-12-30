@@ -1,4 +1,4 @@
-# Mini Linux Shell (C, POSIX)
+# Custom Linux Shell (C, POSIX)
 
 A minimal Linux shell implemented in C to demonstrate core operating system
 concepts such as `process creation`, `signal handling`, and `inter-process communication`.

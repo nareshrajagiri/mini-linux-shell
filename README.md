@@ -95,20 +95,25 @@ mini-linux-shell/
 
 ### Build
 ```bash
+
 make
 
 ./mini-shell
 
+```
+
 
 ## Example Usage
 
-
+```
 mini-shell> ls -l
 mini-shell> cd /tmp
 mini-shell> sleep 5 &
 mini-shell> ls | wc -l
 mini-shell> exit
+```
 
+---
 
 ##🎯 Learning Outcomes
 
